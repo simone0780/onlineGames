@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>La Mesa del Casino</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <h1>🎰 La Mesa del Casino</h1>
+
+  <p>Puntos: <span id="puntos">100</span></p>
+  <p>Rondas: <span id="rondas">5</span></p>
+
+  <input type="number" id="numero" placeholder="Apuesta (1-10)">
+  <button id="jugar">Jugar</button>
+
+  <p id="mensaje"></p>
+
+  <script>
+    // ===============================
+// NIVEL 2 – VARIABLES DEL JUEGO
+// ===============================
+let puntos = 100;
+let rondas = 5;
+const puntosVictoria = 200;
+
+// Referencias al DOM
+const puntosSpan = document.getElementById("puntos");
+const rondasSpan = document.getElementById("rondas");
+const inputNumero = document.getElementById("numero");
+const botonJugar = document.getElementById("jugar");
+const mensaje = document.getElementById("mensaje");
+
+// ===============================
+// NIVEL 3 – EVENTO DE JUGAR
+// ===============================
+botonJugar.addEventListener("click", jugar);
+
+function jugar() {
+
+  // ===============================
+  // NIVEL 4 – VALIDAR FIN DEL JUEGO
+  // ===============================
+  if (rondas <= 0 || puntos <= 0) {
+    mensaje.textContent = "🎮 La partida ha terminado";
+    botonJugar.disabled = true;
+    return;
+  }
+
+  // ===============================
+  // NIVEL 5 – NÚMERO SECRETO
+  // ===============================
+  const apuesta = Number(inputNumero.value);
+
+  if (apuesta < 1 || apuesta > 10) {
+    mensaje.textContent = "⚠️ Introduce un número entre 1 y 10";
+    return;
+  }
+
+  const numeroSecreto = Math.floor(Math.random() * 10) + 1;
+
+  // ===============================
+  // NIVEL 6 – LÓGICA DE APUESTAS
+  // ===============================
+  const diferencia = Math.abs(apuesta - numeroSecreto);
+
+  if (diferencia === 0) {
+    puntos += 50;
+    mensaje.textContent = `🎯 ¡Exacto! El número era ${numeroSecreto}. +50 puntos`;
+  } else if (diferencia === 1) {
+    puntos -= 10;
+    mensaje.textContent = `🔥 Casi… era ${numeroSecreto}. -10 puntos`;
+  } else {
+    puntos -= 30;
+    mensaje.textContent = `❌ Fallaste. Era ${numeroSecreto}. -30 puntos`;
+  }
+
+  // ===============================
+  // NIVEL 7 – CONTROL DE RONDAS
+  // ===============================
+  rondas--;
+
+  puntosSpan.textContent = puntos;
+  rondasSpan.textContent = rondas;
+
+  // ===============================
+  // NIVEL 8 y 9 – ESTADO FINAL
+  // ===============================
+  if (puntos >= puntosVictoria) {
+    mensaje.textContent = "🏆 ¡VICTORIA! Has dominado el casino 🎰";
+    botonJugar.disabled = true;
+  } else if (puntos <= 0 || rondas === 0) {
+    mensaje.textContent = "💀 GAME OVER. La casa siempre gana";
+    botonJugar.disabled = true;
+  }
+}
+
+    
+ 
+    
+    
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+
+body {
+  background-image:
+    linear-gradient(145deg, rgba(2, 9, 14, 0.88), rgba(8, 26, 36, 0.55)),
+    url("../../98.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px #0008;
+  animation: casino-glow 2s infinite alternate;
+}
+
+@keyframes casino-glow {
+  0% {
+    text-shadow: 2px 2px 8px #ffec80, 0 0 10px #ffb347, 0 0 20px #ffcc33;
+    color: #fffbe6;
+  }
+  100% {
+    text-shadow: 2px 2px 16px #ffb347, 0 0 30px #ffcc33, 0 0 40px #fffbe6;
+    color: #ffe066;
+  }
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+
+input[type="number"] {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  width: 120px;
+  box-shadow: 0 2px 8px #0002;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border: 2px solid #ffcc33;
+  box-shadow: 0 0 12px #ffcc33, 0 2px 8px #0002;
+}
+
+
+button {
+  padding: 0.5rem 1.5rem;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
+  color: #222;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0002;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  left: -75%;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.0) 100%);
+  transform: skewX(-20deg);
+  transition: left 0.5s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #ffcc33 0%, #ffb347 100%);
+  transform: scale(1.07) rotate(-1deg);
+  box-shadow: 0 4px 16px #ffb34788;
+}
+
+button:hover::after {
+  left: 120%;
+}
+
+
+#mensaje {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  min-height: 2em;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px #0006;
+  opacity: 0;
+  animation: mensaje-fadein 0.7s forwards;
+}
+
+@keyframes mensaje-fadein {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

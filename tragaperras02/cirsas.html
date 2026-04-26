@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cirsa</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎰 Super Jackpot</h1>
+        
+        <div class="machine">
+            <div class="reel" id="reel1">🐯</div>
+            <div class="reel" id="reel2">🐵</div>
+            <div class="reel" id="reel3">🐻</div>
+        </div>
+
+        <button id="play">🐯 go!!</button> 
+
+        <div class="bet">
+            <p>Apuesta: <span id="currentBet">10</span>💸</p>
+            <div class="bet-buttons">
+                <button id="bet5" class="bet-btn">5</button>
+                <button id="bet10" class="bet-btn active">10</button>
+            </div>
+        </div>
+
+        <div class="info">
+            <p>Dinero: <span id="money">50</span>💰</p>
+            <p>Partidas: <span id="gamesPlayed">0</span></p>
+            <p id="message"></p>
+        </div>
+
+        <audio id="leverSound" src="./sound/lever.wav"></audio>
+        <audio id="spinSound" src="./sound/spin.wav" ></audio>
+        <audio id="winSound" src="./sound/win.wav"></audio>
+        <audio id="loseSound" src="./sound/lose.wav"></audio>
+    </div>
+    <script src="./js/main.js"></script>   
+</body>
+</html>

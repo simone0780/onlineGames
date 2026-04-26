@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tres en Raya</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+        }
+
+        .game {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 320px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        .status {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            min-height: 24px;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .cell {
+            width: 80px;
+            height: 80px;
+            background: #222;
+            border-radius: 10px;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cell:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        .cell.X {
+            color: #00d9ff;
+        }
+
+        .cell.O {
+            color: #ff4d4d;
+        }
+
+        button {
+            background: #00d9ff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #00b0cc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <h1>Juego · rayyas</h1>
+        <div class="status" id="status">turno de jugador X</div>
+
+        <div class="board">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+        </div>
+        <button onclick="resetGame()">Reiniciar</button>
+
+    </div>
+
+    <script>
+        let currentPlayer = "x";
+        let gameActive = true;
+
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        const statusdiv = document.getElementById("status");
+        const cells = document.querySelectorAll(".cell");
+        cells.forEach((cell, index) => {
+            cell.addEventListener("click", () => handleClick(cell, index));
+
+
+        });
+
+        function handleClick(cell, index) {
+            if (cell.textContent !== "" || !gameActive) {
+                return;
+            };
+            cell.textContent = currentPlayer;
+            cell.classList.add(currentPlayer)
+            //  alert("Celda" + index + "clickeada");
+            currentPlayer = currentPlayer === "x" ? "0" : "x";
+            statusDiv.textContent = `turno del jugador ${currentPlayer}`;
+            function checkWinner() {
+                return winningCombinations.some(combination => {
+                    return combination.every(index => {
+                        return cells[index].textContent === currentPlayer;
+                    });
+                });
+            }
+            function isDraw() {
+                return [...cells].every(cell => cell.textContent !== "");
+            }
+        };
+
+
+
+
+        function resetGame() {
+            currentPlayer = "X";
+            gameActive = true;
+            statusText.textContent = "Turno del jugador X";
+
+            cells.forEach(cell => {
+                cell.textContent = "";
+                cell.classList.remove("X", "O");
+            });
+        }
+
+        if (isDraw()) {
+            statusText.textContent = "¡Empate! 🤝";
+            gameActive = false;
+            return;
+        }
+
+        function resetGame() {
+      currentPlayer = "X";
+      gameActive = true;
+      statusText.textContent = "Turno del jugador X";
+
+      cells.forEach(cell => {
+        cell.textContent = "";
+        cell.classList.remove("X", "O");
+      });
+    }
+
+
+    </script>
+</body>
+
+</html>
